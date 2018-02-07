@@ -1,0 +1,35 @@
+{
+  "name": "google-search-results-nodejs",
+  "version": "0.0.1",
+  "description": "Google Search Results Node JS API via SerpApi.com",
+  "main": "lib/GoogleSearchResults.js",
+  "scripts": {
+    "test": "mocha",
+    "coverage": "mocha -R test && npm run coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/serpapi/google-search-results-nodejs.git"
+  },
+  "keywords": [
+    "google",
+    "search",
+    "api",
+    "query",
+    "json",
+    "html",
+    "image",
+    "automated",
+    "localization"
+  ],
+  "devDependencies": {
+    "mocha": "*",
+    "expect": "*"
+  },
+  "author": "Victor Benarbia victor@vtool.run",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/serpapi/google-search-results-nodejs/issues"
+  },
+  "homepage": "https://github.com/serpapi/google-search-results-nodejs#readme"
+}
