@@ -3,11 +3,14 @@
 
 This NodeJS module is designed to scrape and parse Google results using [SERP API](https://serpapi.com). Feel free to fork this repository to add more backends.
 
+## Requirement
+
+- ES6 basic understanding
+- NodeJS coding skills
+- Node 7+ and NPM installed
+
 ## Installation
 
-Assuming Ruby is already installed:
-
-TODO: Need to publish this API 
 ```bash
 $ npm install google-search-results-nodejs
 ```
