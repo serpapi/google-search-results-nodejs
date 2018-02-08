@@ -9,7 +9,7 @@ describe('Google Search Results', function()
    p = {q: "Coffee", location: "Portland"}
   });
   
-  it('fail:buildUrl', function() {
+  it('fail:buildUrl', () => {
     let serp = new gsr.GoogleSearchResults()
     expect(() => {
       serp.buildUrl({}, "json", null)
@@ -31,7 +31,7 @@ describe('Google Search Results', function()
     let serp = new gsr.GoogleSearchResults("demo")
     serp.search(p, "json", (raw) => {
       let data = JSON.parse(raw)
-      expect(data.organic_results[0].title).toBe("Coffee - Wikipedia")
+      expect(data.organic_results[0].title).toBe("Home / Barista - Portland")
       done()
     })
   })
@@ -39,7 +39,7 @@ describe('Google Search Results', function()
   it("json", (done) => {
     let serp = new gsr.GoogleSearchResults("demo")
     serp.json(p, (data) => {
-      expect(data.organic_results[0].title).toBe("Coffee - Wikipedia")
+      expect(data.organic_results[0].title).toBe("Home / Barista - Portland")
       done()
     })
   })
@@ -47,7 +47,7 @@ describe('Google Search Results', function()
   it("jsonWithImages", (done) => {
     let serp = new gsr.GoogleSearchResults("demo")
     serp.jsonWithImages(p, (data) => {
-      expect(data.organic_results[0].title).toBe("Coffee - Wikipedia")
+      expect(data.organic_results[0].title).toBe("Home / Barista - Portland")
       done()
     })
   })
@@ -58,5 +58,16 @@ describe('Google Search Results', function()
       expect(body).toMatch(/<\/html>/)
       done()
     })
+  })
+  
+  it("fail:json", () => {
+    let serp = new gsr.GoogleSearchResults("demo")
+    try {
+      serp.json({}, (data) => {
+        done()
+      })
+    } catch(ex) {
+      expect(ex.message).toBe("Error: Missing query `q` parameter")
+    }
   })
 });
