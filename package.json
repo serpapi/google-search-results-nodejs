@@ -23,13 +23,16 @@
     "localization"
   ],
   "devDependencies": {
-    "mocha": "*",
-    "expect": "*"
+    "expect": "^22.4.3",
+    "mocha": "^5.1.1"
   },
   "author": "Victor Benarbia victor@vtool.run",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/serpapi/google-search-results-nodejs/issues"
   },
-  "homepage": "https://github.com/serpapi/google-search-results-nodejs#readme"
+  "homepage": "https://github.com/serpapi/google-search-results-nodejs#readme",
+  "dependencies": {
+    "npm": "^5.8.0"
+  }
 }
