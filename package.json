@@ -1,6 +1,6 @@
 {
   "name": "google-search-results-nodejs",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Google Search Results Node JS API via SerpApi.com",
   "main": "lib/GoogleSearchResults.js",
   "scripts": {
@@ -14,6 +14,7 @@
   "keywords": [
     "google",
     "search",
+    "scrape",
     "api",
     "query",
     "json",
@@ -26,7 +27,7 @@
     "expect": "^22.4.3",
     "mocha": "^5.1.1"
   },
-  "author": "Victor Benarbia victor@vtool.run",
+  "author": "Victor Benarbia victor@serpapi.com",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/serpapi/google-search-results-nodejs/issues"

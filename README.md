@@ -4,6 +4,8 @@
 
 This NodeJS module is designed to scrape and parse Google results using [SERP API](https://serpapi.com). Feel free to fork this repository to add more backends.
 
+[The full documentation is available here.](https://serpapi.com/search-api)
+
 ## Requirement
 
 - ES6 basic understanding
@@ -23,7 +25,7 @@ var gsr = require('GoogleSearchResults')
 let serp = new gsr.GoogleSearchResults("Your Private Key")
 serp.json({
  q: "Coffee", 
- location: "Portland"
+ location: "Austin, TX"
 }, (result) => {
   console.log(result)
 })
@@ -41,7 +43,7 @@ var gsr = require('GoogleSearchResults')
 let serp = new gsr.GoogleSearchResults()
 let result = serp.json({
  q: "Coffee", 
- location: "Portland",
+ location: "Austin, TX",
 }, (data) => {
   console.log(data)
 }, "Your Private Key")
@@ -70,12 +72,19 @@ callback = function(data) {
 // Show result as JSON
 serp.json(query_params, callback)
 
-// Show results as JSON with Images
-serp.jsonWithImages(query_params, callback)
-
 // Show result as HTML file
 serp.html(query_params, callback)
 ```
 
-See the test located under test/ for more integration details.
+This service supports Google Images, News, Shopping.
+To enable a type of search, the field tbm (to be matched) must be set to:
 
+ * isch: Google Images API.
+ * nws: Google News API.
+ * shop: Google Shopping API.
+ * any other Google service should work out of the box.
+ * (no tbm parameter): regular Google Search.
+
+[The full documentation is available here.](https://serpapi.com/search-api)
+
+For pratical example, you can see the test located under test/.
