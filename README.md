@@ -18,6 +18,8 @@ This NodeJS module is designed to scrape and parse Google results using [SERP AP
 $ npm install google-search-results-nodejs
 ```
 
+[link - npm - google-search-results-nodejs](https://www.npmjs.com/package/google-search-results-nodejs)
+
 ## Simple Example
 
 ```javascript
