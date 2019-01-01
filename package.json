@@ -21,7 +21,12 @@
     "html",
     "image",
     "automated",
-    "localization"
+    "localization",
+    "serp",
+    "serpapi",
+    "image",
+    "news",
+    "seo"
   ],
   "devDependencies": {
     "expect": "^22.4.3",
@@ -33,7 +38,5 @@
     "url": "https://github.com/serpapi/google-search-results-nodejs/issues"
   },
   "homepage": "https://github.com/serpapi/google-search-results-nodejs#readme",
-  "dependencies": {
-    "npm": "^5.8.0"
-  }
+  "dependencies": {}
 }
