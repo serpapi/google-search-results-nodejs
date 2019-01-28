@@ -23,7 +23,7 @@ $ npm install google-search-results-nodejs
 ## Simple Example
 
 ```javascript
-var gsr = require('GoogleSearchResults')
+var gsr = require('google-search-results-nodejs')
 let serp = new gsr.GoogleSearchResults("Your Private Key")
 serp.json({
  q: "Coffee", 
@@ -36,12 +36,12 @@ serp.json({
 ## Set SERP API key
 
 ```javascript
-var gsr = require('GoogleSearchResults')
+var gsr = require('google-search-results-nodejs')
 let serp = new gsr.GoogleSearchResults("Your Private Key")
 ```
 Or
 ```javascript
-var gsr = require('GoogleSearchResults')
+var gsr = require('google-search-results-nodejs')
 let serp = new gsr.GoogleSearchResults()
 let result = serp.json({
  q: "Coffee", 
@@ -52,7 +52,7 @@ let result = serp.json({
 ```
 ## Example with all params and all outputs
 ```javascript
-var gsr = require('GoogleSearchResults')
+var gsr = require('google-search-results-nodejs')
 let serp = new gsr.GoogleSearchResults()
 query_params = {
   q: "query",
