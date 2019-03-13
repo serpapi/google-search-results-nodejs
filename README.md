@@ -90,3 +90,11 @@ To enable a type of search, the field tbm (to be matched) must be set to:
 [The full documentation is available here.](https://serpapi.com/search-api)
 
 For pratical example, you can see the test located under test/.
+
+## Development
+
+Tests require an environment variable holding the SERP API key.
+
+```bash
+$ SERPAPI_KEY=**** npm test
+```
