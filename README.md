@@ -89,4 +89,13 @@ To enable a type of search, the field tbm (to be matched) must be set to:
 
 [The full documentation is available here.](https://serpapi.com/search-api)
 
+## Design style
+
+This API is using callback to run in non-blocking code.
+Here we are trying to follow the spirit of NodeJS. 
+For reference you can read this article:
+ * https://nodejs.org/en/docs/guides/blocking-vs-non-blocking/
+ * https://nodejs.org/en/docs/guides/dont-block-the-event-loop/
+
+
 For pratical example, you can see the test located under test/.
