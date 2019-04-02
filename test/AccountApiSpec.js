@@ -10,7 +10,7 @@ describe('Account API', () => {
   })
 
   it('example', (done) => {
-    if (api_key != "demo") {
+    if (!process.env.API_KEY) {
       done()
       return
     }
