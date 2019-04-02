@@ -1,69 +1,74 @@
-var expect = require('expect');
-var gsr = require('./../lib/GoogleSearchResults');
+const expect = require('expect');
+const GSR = require('./../lib/GoogleSearchResults');
 
-describe('Google Search Results', function()
-{
-  let p;
-  beforeEach(function()
-  {
-   p = {q: "Coffee", location: "Austin, Texas"}
+describe('Google Search Results', () => {
+  let p, api_key;
+  beforeEach(() => {
+    p = { 
+      q: "Coffee",
+      location: "Austin, Texas"
+    }
 
-   // Copy your secret api_key from https://serpapi.com/dashboard
-   api_key = process.env.API_KEY || "demo"
+    // Copy your secret api_key from https://serpapi.com/dashboard
+    api_key = process.env.API_KEY || "demo"
   });
-  
-  it('fail:buildUrl', () => {
-    let serp = new gsr.GoogleSearchResults()
+
+  it('fail:buildUrl', (done) => {
+    let client = new GSR.GoogleSearchResults()
     expect(() => {
-      serp.buildUrl({}, "json", null)
+      client.buildUrl('/path', {}, "json", null)
     }).toThrow(/api_key/)
+    done()
   })
-  
-  it('buildUrl', function() {
-    let serp = new gsr.GoogleSearchResults()
-    
-    expect(serp.buildUrl(p, "json", api_key)).toMatch(/https:\/\/serpapi.com\/search\?q=Coffee&location=Austin%2C%20Texas&source=nodejs&output=json/)
+
+  it('buildUrl', (done) => {
+    let client = new GSR.GoogleSearchResults('demo')
+    expect(client.buildUrl('/path', {q: 'Coffee', location: 'Austin, Texas'}, "json", 'beta')).toMatch(/https:\/\/serpapi.com\/path\?q=Coffee&location=Austin%2C%20Texas&source=nodejs&output=json&api_key=beta/)
+    done()
   })
-  
-  it('buildUrl with key in constructor', function() {
-    let serp = new gsr.GoogleSearchResults(api_key)
-    expect(serp.buildUrl(p, "json")).toMatch(/https:\/\/serpapi.com\/search\?q=Coffee&location=Austin%2C%20Texas&source=nodejs&output=json/)
+
+  it('buildUrl with key in constructor', (done) => {
+    let client = new GSR.GoogleSearchResults('demo')
+    expect(client.buildUrl('/path', {q: 'Coffee', location: 'Austin, Texas'}, "json")).toMatch(/https:\/\/serpapi.com\/path\?q=Coffee&location=Austin%2C%20Texas&source=nodejs&output=json&api_key=demo/)
+    done()
   })
-  
+
   it("search", (done) => {
-    this.timeout(6000);
-    let serp = new gsr.GoogleSearchResults(api_key)
-    serp.search(p, "json", (raw) => {
+    let client = new GSR.GoogleSearchResults(api_key)
+    client.setTimeout(6000);
+    client.search(p, "json", (raw) => {
       let data = JSON.parse(raw)
       expect(data.local_results[0].title.length).toBeGreaterThan(5)
       done()
     })
   })
-  
+
   it("json", (done) => {
-    let serp = new gsr.GoogleSearchResults(api_key)
-    serp.json(p, (data) => {
+    let client = new GSR.GoogleSearchResults(api_key)
+    client.json(p, (data) => {
       expect(data.local_results[0].title.length).toBeGreaterThan(5)
       done()
     })
   })
-  
+
   it("html", (done) => {
-    let serp = new gsr.GoogleSearchResults(api_key)
-    serp.html(p, (body) => {
+    let client = new GSR.GoogleSearchResults(api_key)
+    client.html(p, (body) => {
       expect(body).toMatch(/<\/html>/)
       done()
     })
   })
-  
-  it("fail:json", () => {
-    let serp = new gsr.GoogleSearchResults(api_key)
+
+  xit("fail:json", (done) => {
     try {
-      serp.json({}, (data) => {
+      let client = new GSR.GoogleSearchResults(api_key)
+      let fn = (data) => {
         done()
-      })
-    } catch(ex) {
+      }
+      client.json({}, fn)
+    } catch (ex) {
       expect(ex.message).toBe("Error: Missing query `q` parameter")
+      done()
     }
   })
 });
