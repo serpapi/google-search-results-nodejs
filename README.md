@@ -1,5 +1,6 @@
 # Google Search Results Node.js
 
+[![npm version](https://badge.fury.io/js/google-search-results-nodejs.svg)](https://badge.fury.io/js/google-search-results-nodejs)
 [![Build Status](https://travis-ci.org/serpapi/google-search-results-nodejs.svg?branch=master)](https://travis-ci.org/serpapi/google-search-results-nodejs)
 
 This NodeJS module is designed to scrape and parse Google results using [SERP API](https://serpapi.com). Feel free to fork this repository to add more backends.
