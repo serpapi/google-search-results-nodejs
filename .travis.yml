@@ -1,4 +1,8 @@
 language: node_js
 node_js:
-  - 'npm install"
+  - "7"
+  - "11.12.0"
+before_script:
+  - "npm install"
+script:
   - "npm test"
