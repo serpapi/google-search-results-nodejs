@@ -1,6 +1,6 @@
 {
   "name": "google-search-results-nodejs",
-  "version": "0.1.0",
+  "version": "1.2.0",
   "description": "Google Search Results Node JS API via SerpApi.com",
   "main": "lib/GoogleSearchResults.js",
   "scripts": {
