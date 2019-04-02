@@ -23,8 +23,8 @@ $ npm install google-search-results-nodejs
 ## Simple Example
 
 ```javascript
-var gsr = require('google-search-results-nodejs')
-let serp = new gsr.GoogleSearchResults("Your Private Key")
+var search = require('google-search-results-nodejs')
+let serp = new search.GoogleSearchResults("Your Private Key")
 serp.json({
  q: "Coffee", 
  location: "Austin, TX"
@@ -36,13 +36,13 @@ serp.json({
 ## Set SERP API key
 
 ```javascript
-var gsr = require('google-search-results-nodejs')
-let serp = new gsr.GoogleSearchResults("Your Private Key")
+var search = require('google-search-results-nodejs')
+let serp = new search.GoogleSearchResults("Your Private Key")
 ```
 Or
 ```javascript
-var gsr = require('google-search-results-nodejs')
-let serp = new gsr.GoogleSearchResults()
+var search = require('google-search-results-nodejs')
+let serp = new search.GoogleSearchResults()
 let result = serp.json({
  q: "Coffee", 
  location: "Austin, TX",
@@ -52,8 +52,8 @@ let result = serp.json({
 ```
 ## Example with all params and all outputs
 ```javascript
-var gsr = require('google-search-results-nodejs')
-let serp = new gsr.GoogleSearchResults()
+var search = require('google-search-results-nodejs')
+let serp = new search.GoogleSearchResults()
 query_params = {
   q: "query",
   google_domain: "Google Domain", 
@@ -99,3 +99,36 @@ For reference you can read this article:
 
 
 For pratical example, you can see the test located under test/.
+
+## Promise and callback
+
+This API was developped using basic callback to handle response.
+And exception are just throw away with interceptor.
+
+if you want to take advantage of the promise to block the request. 
+here is how I will do.
+```javascript
+const util = require('util')
+
+function getJson(parameter, resolve, reject) {  
+  const client = new gsr.GoogleSearchResults(api_key)
+  try {
+    client.json(parameter, resolve)
+  } catch (e) {
+    reject(e)
+  }
+}
+
+const blockFn = util.promisify(getJson)
+blockFn[util.promisify.custom](parameter).then((data) => {
+  expect(data.local_results[0].title.length).toBeGreaterThan(5)
+  done()
+}).catch((error) => {
+  console.error(error)
+  done()
+})
+```
+
+test: test/ExampleSpec.js
+documentation: https://nodejs.org/docs/latest-v8.x/api/util.html#util_util_promisify_original
+
