@@ -3,7 +3,7 @@ const GSR = require('../lib/GoogleSearchResults');
 
 describe('Account API', () => {
 
-  const api_key
+  let api_key
   beforeEach(() => {
     // api_key is not required for the location API
     api_key = process.env.API_KEY || "demo"

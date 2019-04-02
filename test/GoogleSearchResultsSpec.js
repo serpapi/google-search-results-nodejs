@@ -23,11 +23,11 @@ describe('Google Search Results', () => {
 
   it('buildUrl', (done) => {
     let client = new GSR.GoogleSearchResults('demo')
-    expect(client.buildUrl('/path', {q: 'Coffee', location: 'Austin, Texas'}, "json", 'beta')).toMatch(/https:\/\/serpapi.com\/path\?q=Coffee&location=Austin%2C%20Texas&source=nodejs&output=json&api_key=beta/)
+    expect(client.buildUrl('/path', {q: 'Coffee', location: 'Austin, Texas', api_key: 'beta'}, "json")).toMatch(/https:\/\/serpapi.com\/path\?q=Coffee&location=Austin%2C%20Texas&api_key=beta&source=nodejs&output=json/)
     done()
   })
 
-  it('buildUrl with key in constructor', (done) => {
+  it('buildUrl without api_key', (done) => {
     let client = new GSR.GoogleSearchResults('demo')
     expect(client.buildUrl('/path', {q: 'Coffee', location: 'Austin, Texas'}, "json")).toMatch(/https:\/\/serpapi.com\/path\?q=Coffee&location=Austin%2C%20Texas&source=nodejs&output=json&api_key=demo/)
     done()
