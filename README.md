@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/serpapi/google-search-results-nodejs.svg?branch=master)](https://travis-ci.org/serpapi/google-search-results-nodejs)
 
-This NodeJS module is designed to scrape and parse Google results using [SERP API](https://serpapi.com). Feel free to fork this repository to add more backends.
+This NodeJS module is designed to scrape and parse Google, Bing and Baidu results using [SERP API](https://serpapi.com). Feel free to fork this repository to add more backends.
 
 This Ruby Gem is meant to scrape and parse Google results using [SerpApi](https://serpapi.com).
 The following services are provided:
@@ -49,12 +49,17 @@ The Serp API service (backend)
  - searches on Google using the client: q = "coffee"
  - parses the messy HTML responses
  - return a standardizes JSON response
-The Ruby class GoogleSearchResults
+The class GoogleSearchResults
  - Format the request to Serp API server
  - Execute GET http request
  - Parse JSON into Ruby Hash using JSON standard library provided by Ruby
 Et voila..
 
+Alternatively, you can search:
+ - Bing using BingSearchResults class
+ - Baidu using BaiduSearchResults class
+
+See the [playground to generate your code.](https://serpapi.com/playground)
 
 ## Example
  * [How to set SERP API key](#how-to-set-serp-api-key)
