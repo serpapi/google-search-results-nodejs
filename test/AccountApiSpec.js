@@ -1,5 +1,5 @@
 const expect = require('expect');
-const GSR = require('../lib/GoogleSearchResults');
+const serpapi = require('../lib/GoogleSearchResults');
 
 describe('Account API', () => {
 
@@ -15,7 +15,7 @@ describe('Account API', () => {
       return
     }
 
-    const client = new GSR.GoogleSearchResults(api_key)
+    const client = new serpapi.GoogleSearchResults(api_key)
     client.account((data) => {
       expect(data.account_id).toExist
       done()

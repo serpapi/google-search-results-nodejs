@@ -3,7 +3,16 @@
 [![npm version](https://badge.fury.io/js/google-search-results-nodejs.svg)](https://badge.fury.io/js/google-search-results-nodejs)
 [![Build Status](https://travis-ci.org/serpapi/google-search-results-nodejs.svg?branch=master)](https://travis-ci.org/serpapi/google-search-results-nodejs)
 
-This NodeJS module is designed to scrape and parse Google results using [SERP API](https://serpapi.com). Feel free to fork this repository to add more backends.
+This NodeJS module is designed to scrape and parse Google, Bing and Baidu results using [SERP API](https://serpapi.com). Feel free to fork this repository to add more backends.
+
+This Ruby Gem is meant to scrape and parse Google results using [SerpApi](https://serpapi.com).
+The following services are provided:
+ * [Search API](https://serpapi.com/search-api)
+ * [Location API](https://serpapi.com/locations-api)
+ * [Search Archive API](https://serpapi.com/search-archive-api)
+ * [Account API](https://serpapi.com/account-api)
+
+Serp API provides a [script builder](https://serpapi.com/demo) to get you started quickly.
 
 This Ruby Gem is meant to scrape and parse Google results using [SerpApi](https://serpapi.com).
 The following services are provided:
@@ -50,13 +59,26 @@ The Serp API service (backend)
  - searches on Google using the client: q = "coffee"
  - parses the messy HTML responses
  - return a standardizes JSON response
+<<<<<<< Updated upstream
 The Ruby class GoogleSearchResults
+=======
+The class GoogleSearchResults
+>>>>>>> Stashed changes
  - Format the request to Serp API server
  - Execute GET http request
  - Parse JSON into Ruby Hash using JSON standard library provided by Ruby
 Et voila..
 
+<<<<<<< Updated upstream
 
+=======
+Alternatively, you can search:
+ - Bing using BingSearchResults class
+ - Baidu using BaiduSearchResults class
+
+See the [playground to generate your code.](https://serpapi.com/playground)
+
+>>>>>>> Stashed changes
 ## Example
  * [How to set SERP API key](#how-to-set-serp-api-key)
  * [Search API capability](#search-api-capability)
