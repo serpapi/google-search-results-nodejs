@@ -11,3 +11,5 @@ test:
 autotest:
 	npm run test -- --watch
 
+release: test
+	npm publish
