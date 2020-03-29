@@ -15,12 +15,12 @@ describe('Google Search Results - Example', function () {
   })
 
   it("promisified callback function", (done) => {
-    if(api_key == "demo") {
+    if (api_key == "demo") {
       done()
       return
     }
 
-    function getJson(parameter, resolve, reject) {  
+    function getJson(parameter, resolve, reject) {
       const client = new gsr.GoogleSearchResults(api_key)
       try {
         client.json(parameter, resolve)
@@ -31,22 +31,22 @@ describe('Google Search Results - Example', function () {
 
     const blockFn = util.promisify(getJson)
     blockFn[util.promisify.custom](parameter).then((data) => {
-      expect(data.local_results[0].title.length).toBeGreaterThan(5)
+      expect(data.organic_results[0].title.length).toBeGreaterThan(5)
       done()
     }).catch((error) => {
       console.error(error)
       done()
     })
-  })
+  }).timeout(10000)
 
 
   it("callback to custom promise", (done) => {
-    if(api_key == "demo") {
+    if (api_key == "demo") {
       done()
       return
     }
 
-    function blockFn(parameter, callback) {}
+    function blockFn(parameter, callback) { }
 
     blockFn[util.promisify.custom] = (parameter) => {
       return new Promise((resolve, reject) => {
@@ -66,5 +66,5 @@ describe('Google Search Results - Example', function () {
       console.error(error)
       done()
     })
-  })
+  }).timeout(10000)
 });
