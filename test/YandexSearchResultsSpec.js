@@ -1,13 +1,13 @@
 const expect = require('expect');
-const serpapi = require('./../lib/BingSearchResults');
+const serpapi = require('./../lib/YandexSearchResults');
 
-describe('Bing Search Results', () => {
+describe('Yandex Search Results', () => {
   it("json", (done) => {
     let api_key = process.env.API_KEY
     if (api_key != null) {
-      let client = new serpapi.BingSearchResults(api_key)
+      let client = new serpapi.YandexSearchResults(api_key)
       client.json({
-        q: "Coffee"
+        text: "Coffee"
       }, (data) => {
         expect(data.search_metadata.status).toEqual("Success")
         expect(data.organic_results.length).toBeGreaterThan(5)

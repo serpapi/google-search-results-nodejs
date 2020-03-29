@@ -2,22 +2,19 @@ const expect = require('expect');
 const serpapi = require('./../lib/BaiduSearchResults');
 
 describe('Baidu Search Results', () => {
-  let p, api_key;
-  beforeEach(() => {
-    p = {
-      q: "Coffee",
-      location: "Austin, Texas"
-    }
-
-    // Copy your secret api_key from https://serpapi.com/dashboard
-    api_key = process.env.API_KEY || "demo"
-  });
-
   it("json", (done) => {
-    let client = new serpapi.BaiduSearchResults(api_key)
-    client.json(p, (data) => {
-      expect(data.organic_results.length).toBeGreaterThan(5)
+    let api_key = process.env.API_KEY
+    if (api_key != null) {
+      let client = new serpapi.BaiduSearchResults(api_key)
+      client.json({
+        q: "Coffee"
+      }, (data) => {
+        expect(data.search_metadata.status).toEqual("Success")
+        expect(data.organic_results.length).toBeGreaterThan(5)
+        done()
+      })
+    } else {
       done()
-    })
+    }
   }).timeout(10000)
 });

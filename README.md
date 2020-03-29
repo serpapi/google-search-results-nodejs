@@ -3,7 +3,15 @@
 [![npm version](https://badge.fury.io/js/google-search-results-nodejs.svg)](https://badge.fury.io/js/google-search-results-nodejs)
 [![Build Status](https://travis-ci.org/serpapi/google-search-results-nodejs.svg?branch=master)](https://travis-ci.org/serpapi/google-search-results-nodejs)
 
-This NodeJS module is designed to scrape and parse Google, Bing and Baidu results using [SERP API](https://serpapi.com). Feel free to fork this repository to add more backends.
+This NodeJS module is designed to scrape and parse Google, Bing and Baidu results using [SERP API](https://serpapi.com).
+This Ruby Gem is meant to scrape and parse Google results using [SerpApi](https://serpapi.com).
+The following services are provided:
+ * [Search API](https://serpapi.com/search-api)
+ * [Location API](https://serpapi.com/locations-api)
+ * [Search Archive API](https://serpapi.com/search-archive-api)
+ * [Account API](https://serpapi.com/account-api)
+
+SerpApi provides a [script builder](https://serpapi.com/demo) to get you started quickly.
 
 This Ruby Gem is meant to scrape and parse Google results using [SerpApi](https://serpapi.com).
 The following services are provided:
@@ -12,16 +20,7 @@ The following services are provided:
  * [Search Archive API](https://serpapi.com/search-archive-api)
  * [Account API](https://serpapi.com/account-api)
 
-Serp API provides a [script builder](https://serpapi.com/demo) to get you started quickly.
-
-This Ruby Gem is meant to scrape and parse Google results using [SerpApi](https://serpapi.com).
-The following services are provided:
- * [Search API](https://serpapi.com/search-api)
- * [Location API](https://serpapi.com/locations-api)
- * [Search Archive API](https://serpapi.com/search-archive-api)
- * [Account API](https://serpapi.com/account-api)
-
-Serp API provides a [script builder](https://serpapi.com/demo) to get you started quickly.
+SerpApi provides a [script builder](https://serpapi.com/demo) to get you started quickly.
 
 [The full documentation is available here.](https://serpapi.com/search-api)
 
@@ -55,19 +54,22 @@ client.json({
  ```
 This example runs a search about "coffee" using your secret api key.
 
-The Serp API service (backend)
+The SerpApi service (backend)
  - searches on Google using the client: q = "coffee"
  - parses the messy HTML responses
  - return a standardizes JSON response
 The class GoogleSearchResults
- - Format the request
- - Execute GET http request against Serp API service
- - Parse reponse into JSON
+ - Format the request to SerpApi server
+ - Execute GET http request
+ - Parse JSON into Ruby Hash using JSON standard library provided by Ruby
 Et voila..
 
 Alternatively, you can search:
  - Bing using BingSearchResults class
  - Baidu using BaiduSearchResults class
+ - Yandex using YandexSearchResults class
+ - Ebay using EbaySearchResults class
+ - Yahoo using YahooSearchResults class
 
 See the [playground to generate your code.](https://serpapi.com/playground)
 
@@ -82,13 +84,13 @@ See the [playground to generate your code.](https://serpapi.com/playground)
  * [Coding style](#coding-style)
  
 ### How to set SERP API key
-The Serp API key can be set globally using a singleton pattern.
+The SerpApi api_key can be set globally using a singleton pattern.
 ```javascript
 const GSR = require('google-search-results-nodejs')
 let client = new GSR.GoogleSearchResults("Your Private Key")
 ```
 
-The Serp API key can be provided for each request
+The SerpApi api_key can be provided for each request
 ```javascript
 const GSR = require('google-search-results-nodejs')
 let client = new GSR.GoogleSearchResults()
@@ -245,7 +247,7 @@ For reference you can read this article:
 For pratical example, you can see the test located under test/.
 
 ## Conclusion
-Serp API supports Google Images, News, Shopping and more..
+SerpApi supports Google Images, News, Shopping and more..
 To enable a type of search, the field tbm (to be matched) must be set to:
 
  * isch: Google Images API.
