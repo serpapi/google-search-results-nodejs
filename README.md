@@ -1,7 +1,7 @@
 # Google Search Node.js
 
 [![npm version](https://badge.fury.io/js/google-search-results-nodejs.svg)](https://badge.fury.io/js/google-search-results-nodejs)
-[![Build Status](https://travis-ci.org/serpapi/google-search-results-nodejs.svg?branch=master)](https://travis-ci.org/serpapi/google-search-results-nodejs)
+![test](https://github.com/serpapi/google-search-results-nodejs/workflows/test/badge.svg)
 
 This NodeJS module is designed to scrape and parse Google, Bing and Baidu results using [SerpApi](https://serpapi.com).
 This Ruby Gem is meant to scrape and parse Google results using [SerpApi](https://serpapi.com).
