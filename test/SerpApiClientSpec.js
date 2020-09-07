@@ -22,14 +22,19 @@ describe('Google Search', () => {
   }).timeout(10000)
 
   it('buildUrl', (done) => {
-    let search = new serpapi.SerpApiSearch('demo')
+    let search = new serpapi.SerpApiSearch(this.api_key)
     expect(search.buildUrl('/path', { q: 'Coffee', location: 'Austin, Texas', api_key: 'beta' }, "json")).toMatch(/https:\/\/serpapi.com\/path\?q=Coffee&location=Austin%2C%20Texas&api_key=beta&source=nodejs&output=json/)
     done()
   }).timeout(10000)
 
   it('buildUrl without api_key', (done) => {
-    let search = new serpapi.SerpApiSearch('demo')
-    expect(search.buildUrl('/path', { q: 'Coffee', location: 'Austin, Texas' }, "json")).toMatch(/https:\/\/serpapi.com\/path\?q=Coffee&location=Austin%2C%20Texas&source=nodejs&output=json&api_key=demo/)
+    let search = new serpapi.SerpApiSearch(this.api_key)
+    try {
+      search.buildUrl('/path', { q: 'Coffee', location: 'Austin, Texas' }, "json")
+      fail("error should have been raised")
+    } catch (e) {
+      expect(e.toString()).toMatch(/api_key is required/)
+    }
     done()
   }).timeout(10000)
 
