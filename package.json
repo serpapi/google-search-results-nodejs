@@ -3,8 +3,8 @@
   "version": "2.0.0",
   "description": "Google Search Node JS API via SerpApi.com",
   "scripts": {
-    "test": "API_KEY=${API_KEY} mocha",
-    "coverage": "API_KEY=${API_KEY} mocha -R test && npm run coverage"
+    "test": "mocha",
+    "coverage": "mocha -R test && npm run coverage"
   },
   "repository": {
     "type": "git",
