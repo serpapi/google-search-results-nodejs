@@ -1,8 +1,8 @@
 const expect = require('expect')
 const util = require('util')
-const gsr = require('../lib/GoogleSearchResults')
+const gsr = require('../lib/GoogleSearch')
 
-describe('Google Search Results - Example', function () {
+describe('Google Search - Example', function () {
   let parameter, api_key
   beforeEach(function () {
     parameter = {
@@ -21,9 +21,9 @@ describe('Google Search Results - Example', function () {
     }
 
     function getJson(parameter, resolve, reject) {
-      const client = new gsr.GoogleSearchResults(api_key)
+      const search = new gsr.GoogleSearch(api_key)
       try {
-        client.json(parameter, resolve)
+        search.json(parameter, resolve)
       } catch (e) {
         reject(e)
       }
@@ -50,9 +50,9 @@ describe('Google Search Results - Example', function () {
 
     blockFn[util.promisify.custom] = (parameter) => {
       return new Promise((resolve, reject) => {
-        let client = new gsr.GoogleSearchResults(api_key)
+        let search = new gsr.GoogleSearch(api_key)
         try {
-          client.json(parameter, resolve)
+          search.json(parameter, resolve)
         } catch (e) {
           reject(e)
         }

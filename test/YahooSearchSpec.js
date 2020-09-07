@@ -1,13 +1,13 @@
 const expect = require('expect');
-const serpapi = require('./../lib/EbaySearchResults');
+const serpapi = require('./../lib/YahooSearch');
 
-describe('Ebay Search Results', () => {
+describe('Yahoo Search', () => {
   it("json", (done) => {
     let api_key = process.env.API_KEY
     if (api_key != null) {
-      let client = new serpapi.EbaySearchResults(api_key)
-      client.json({
-        _nkw: "Coffee"
+      let search = new serpapi.YahooSearch(api_key)
+      search.json({
+        p: "Coffee"
       }, (data) => {
         expect(data.search_metadata.status).toEqual("Success")
         expect(data.organic_results.length).toBeGreaterThan(5)

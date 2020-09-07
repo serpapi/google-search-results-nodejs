@@ -1,5 +1,5 @@
 const expect = require('expect');
-const serpapi = require('../lib/GoogleSearchResults');
+const serpapi = require('../lib/GoogleSearch');
 
 describe('Search Archive API', () => {
   it('example', (done) => {
@@ -8,10 +8,10 @@ describe('Search Archive API', () => {
       return
     }
 
-    var client = new serpapi.GoogleSearchResults(process.env.API_KEY)
-    client.json({ q: "Coffee", location: "Portland" }, (search_result) => {
+    var search = new serpapi.GoogleSearch(process.env.API_KEY)
+    search.json({ q: "Coffee", location: "Portland" }, (search_result) => {
       // search in archive for the search just returned
-      client.search_archive(search_result.search_metadata.id, (archived_search) => {
+      search.search_archive(search_result.search_metadata.id, (archived_search) => {
         expect(archived_search.search_metadata.id).toEqual(search_result.search_metadata.id)
         done()
       })

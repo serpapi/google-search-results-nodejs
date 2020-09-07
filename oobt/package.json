@@ -1,0 +1,11 @@
+{
+  "name": "oobt",
+  "version": "1.0.0",
+  "description": "google example",
+  "main": "google_demo.js",
+  "scripts": {
+    "run": "node google_demo.js"
+  },
+  "author": "",
+  "license": "ISC"
+}

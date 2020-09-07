@@ -1,9 +1,9 @@
-# Google Search Results Node.js
+# Google Search Node.js
 
 [![npm version](https://badge.fury.io/js/google-search-results-nodejs.svg)](https://badge.fury.io/js/google-search-results-nodejs)
 [![Build Status](https://travis-ci.org/serpapi/google-search-results-nodejs.svg?branch=master)](https://travis-ci.org/serpapi/google-search-results-nodejs)
 
-This NodeJS module is designed to scrape and parse Google, Bing and Baidu results using [SERP API](https://serpapi.com).
+This NodeJS module is designed to scrape and parse Google, Bing and Baidu results using [SerpApi](https://serpapi.com).
 This Ruby Gem is meant to scrape and parse Google results using [SerpApi](https://serpapi.com).
 The following services are provided:
  * [Search API](https://serpapi.com/search-api)
@@ -43,9 +43,9 @@ $ npm install google-search-results-nodejs
 ## Quick start
 
 ```javascript
-const GSR = require('google-search-results-nodejs')
-const client = new GSR.GoogleSearchResults("Your Private Key")
-client.json({
+const SerpApi = require('google-search-results-nodejs')
+const search = new SerpApi.GoogleSearch("Your Private Key")
+search.json({
  q: "Coffee", 
  location: "Austin, TX"
 }, (result) => {
@@ -55,21 +55,21 @@ client.json({
 This example runs a search about "coffee" using your secret api key.
 
 The SerpApi service (backend)
- - searches on Google using the client: q = "coffee"
+ - searches on Google using the search: q = "coffee"
  - parses the messy HTML responses
  - return a standardizes JSON response
-The class GoogleSearchResults
+The class GoogleSearch
  - Format the request to SerpApi server
  - Execute GET http request
  - Parse JSON into Ruby Hash using JSON standard library provided by Ruby
 Et voila..
 
 Alternatively, you can search:
- - Bing using BingSearchResults class
- - Baidu using BaiduSearchResults class
- - Yandex using YandexSearchResults class
- - Ebay using EbaySearchResults class
- - Yahoo using YahooSearchResults class
+ - Bing using BingSearch class
+ - Baidu using BaiduSearch class
+ - Yandex using YandexSearch class
+ - Ebay using EbaySearch class
+ - Yahoo using YahooSearch class
 
 See the [playground to generate your code.](https://serpapi.com/playground)
 
@@ -86,15 +86,15 @@ See the [playground to generate your code.](https://serpapi.com/playground)
 ### How to set SERP API key
 The SerpApi api_key can be set globally using a singleton pattern.
 ```javascript
-const GSR = require('google-search-results-nodejs')
-let client = new GSR.GoogleSearchResults("Your Private Key")
+const SerpApi = require('google-search-results-nodejs')
+let search = new SerpApi.GoogleSearch("Your Private Key")
 ```
 
 The SerpApi api_key can be provided for each request
 ```javascript
-const GSR = require('google-search-results-nodejs')
-let client = new GSR.GoogleSearchResults()
-let result = client.json({
+const SerpApi = require('google-search-results-nodejs')
+let search = new SerpApi.GoogleSearch()
+let result = search.json({
  api_key: "Your private key",
  q: "Coffee",            // search query
  location: "Austin, TX", // location 
@@ -122,8 +122,8 @@ query_params = {
   output: "json|html", // output format
 }
 
-const GSR = require('google-search-results-nodejs')
-const client = new GSR.GoogleSearchResults()
+const SerpApi = require('google-search-results-nodejs')
+const search = new SerpApi.GoogleSearch()
 
 // create a callback
 callback = (data) => {
@@ -131,10 +131,10 @@ callback = (data) => {
 }
 
 // Show result as JSON
-client.json(query_params, callback)
+search.json(query_params, callback)
 
 // Show result as HTML file
-client.html(query_params, callback)
+search.html(query_params, callback)
 ```
 
 (the full documentation)[https://serpapi.com/search-api]
@@ -158,8 +158,8 @@ Run all tests
 
 ### Location API
 ```javascript
-const client = new GSR.GoogleSearchResults(api_key)
-client.location("Austin", 3, (data) => {
+const search = new SerpApi.GoogleSearch(api_key)
+search.location("Austin", 3, (data) => {
   console.log(data)
 })
 ```
@@ -183,10 +183,10 @@ it prints the first 3 location matching Austin (Texas, Texas, Rochester)
 
 The first search result returns a search_id which can be provided to get the search result from the archive.
 ```javascript
-var client = new GSR.GoogleSearchResults(api_key)
-client.json({q: "Coffee", location: "Portland" }, (search_result) => {
+var search = new SerpApi.GoogleSearch(api_key)
+search.json({q: "Coffee", location: "Portland" }, (search_result) => {
   // search in archive for the search just returned
-  client.search_archive(search_result.search_metadata.id, (archived_search) => {
+  search.search_archive(search_result.search_metadata.id, (archived_search) => {
     console.log(archived_search)
   })
 })
@@ -196,8 +196,8 @@ it prints the search from the archive.
 
 ### Account API
 ```javascript
-const client = new GSR.GoogleSearchResults(api_key)
-client.account((data) => {
+const search = new SerpApi.GoogleSearch(api_key)
+search.account((data) => {
   console.log(data)
 })
 ```
@@ -214,9 +214,9 @@ here is how I will do.
 const util = require('util')
 
 function getJson(parameter, resolve, reject) {  
-  const client = new gsr.GoogleSearchResults(api_key)
+  const search = new SerpApi.GoogleSearch(api_key)
   try {
-    client.json(parameter, resolve)
+    search.json(parameter, resolve)
   } catch (e) {
     reject(e)
   }
@@ -246,6 +246,21 @@ For reference you can read this article:
 
 For pratical example, you can see the test located under test/.
 
+## Run regression
+
+To run the regression suite.
+```bash
+export API_KEY="your api key"
+make test
+```
+
+## Change log
+
+ * 2.0
+   * Refractor class name: SearchResult -> Search
+ * 1.2
+   * stable version to support all the basic search API.
+
 ## Conclusion
 SerpApi supports Google Images, News, Shopping and more..
 To enable a type of search, the field tbm (to be matched) must be set to:
@@ -254,19 +269,8 @@ To enable a type of search, the field tbm (to be matched) must be set to:
  * nws: Google News API.
  * shop: Google Shopping API.
  * any other Google service should work out of the box.
- * (no tbm parameter): regular Google client.
+ * (no tbm parameter): regular Google search.
 
 The field `tbs` allows to customize the search even more.
 
 [The full documentation is available here.](https://serpapi.com/search-api)
-
-## Contributing
-
-Contributions are welcome, feel to submit a pull request!
-
-To run the tests:
-
-```bash
-export API_KEY="your api key"
-make test
-```

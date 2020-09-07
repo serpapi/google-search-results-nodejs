@@ -1,12 +1,12 @@
 const expect = require('expect');
-const serpapi = require('./../lib/BaiduSearchResults');
+const serpapi = require('./../lib/GoogleSearch');
 
-describe('Baidu Search Results', () => {
+describe('Google Search', () => {
   it("json", (done) => {
     let api_key = process.env.API_KEY
     if (api_key != null) {
-      let client = new serpapi.BaiduSearchResults(api_key)
-      client.json({
+      let search = new serpapi.GoogleSearch(api_key)
+      search.json({
         q: "Coffee"
       }, (data) => {
         expect(data.search_metadata.status).toEqual("Success")
