@@ -1,5 +1,5 @@
 const expect = require('expect');
-const serpapi = require('../lib/GoogleSearch');
+const serpapi = require('../lib/main');
 
 describe('Search Archive API', () => {
   it('example', (done) => {

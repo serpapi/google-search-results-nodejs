@@ -1,5 +1,5 @@
 const expect = require('expect');
-const serpapi = require('./../lib/BingSearch');
+const serpapi = require('./../lib/main');
 
 describe('Bing Search', () => {
   it("json", (done) => {
@@ -10,7 +10,6 @@ describe('Bing Search', () => {
         q: "Coffee"
       }, (data) => {
         expect(data.search_metadata.status).toEqual("Success")
-        expect(data.organic_results.length).toBeGreaterThan(5)
         done()
       })
     } else {

@@ -1,5 +1,5 @@
 const expect = require('expect');
-const serpapi = require('./../lib/YandexSearch');
+const serpapi = require('./../lib/main');
 
 describe('Yandex Search', () => {
   it("json", (done) => {

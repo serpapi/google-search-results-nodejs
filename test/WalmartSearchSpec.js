@@ -1,5 +1,5 @@
 const expect = require('expect');
-const serpapi = require('../lib/WalmartSearch');
+const serpapi = require('../lib/main');
 
 describe('Walmart Search', () => {
   it("json", (done) => {
@@ -16,5 +16,5 @@ describe('Walmart Search', () => {
     } else {
       done()
     }
-  }).timeout(10000)
+  }).timeout(100000)
 });

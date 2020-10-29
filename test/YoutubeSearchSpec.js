@@ -1,5 +1,5 @@
 const expect = require('expect');
-const serpapi = require('./../lib/YoutubeSearch');
+const serpapi = require('./../lib/main');
 
 describe('Youtube Search', () => {
   it("json", (done) => {
@@ -16,5 +16,5 @@ describe('Youtube Search', () => {
     } else {
       done()
     }
-  }).timeout(10000)
+  }).timeout(100000)
 });

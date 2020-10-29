@@ -1,5 +1,5 @@
 const expect = require('expect');
-const serpapi = require('./../lib/BaiduSearch');
+const serpapi = require('./../lib/main');
 
 describe('Baidu Search', () => {
   it("json", (done) => {

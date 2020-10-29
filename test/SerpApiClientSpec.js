@@ -1,5 +1,5 @@
 const expect = require('expect');
-const serpapi = require('../lib/SerpApiSearch');
+const serpapi = require('../lib/main');
 
 describe('Google Search', () => {
   let p, api_key;

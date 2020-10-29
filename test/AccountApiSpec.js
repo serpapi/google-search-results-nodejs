@@ -1,5 +1,5 @@
 const expect = require('expect');
-const serpapi = require('../lib/GoogleSearch');
+const GoogleSearch = require('../lib/GoogleSearch');
 
 describe('Account API', () => {
 
@@ -15,7 +15,7 @@ describe('Account API', () => {
       return
     }
 
-    const search = new serpapi.GoogleSearch(api_key)
+    const search = new GoogleSearch(api_key)
     search.account((data) => {
       expect(data.account_id).toExist
       done()
