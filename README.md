@@ -255,7 +255,8 @@ make test
 ```
 
 ## Change log
-
+ * 2.0.1 
+  * fix classes loading.
  * 2.0
    * Refractor class name: SearchResult -> Search
  * 1.2

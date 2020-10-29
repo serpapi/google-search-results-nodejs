@@ -6,14 +6,16 @@ search.json({
 }, (data) => {
   if (data.search_metadata.status == "Success") {
     if (data.organic_results.length > 0) {
-      console.log("ok")
+      console.log("ok: search executed successfully")
       process.exit(0)
     } else {
-      console.log("oops..")
+      console.log("oops something went wrong..")
+      console.log(data)
       process.exit(1)
     }
   } else {
-    console.log("oops..")
+    console.log("oops request failed!")
+    console.log(data)
     process.exit(1)
   }
 })

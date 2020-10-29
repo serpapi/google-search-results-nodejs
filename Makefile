@@ -8,7 +8,7 @@ all: test
 package:
 	npm pack
 
-oobt:
+oobt: package
 	rm -rf /oobt/tmp
 	cp -R oobt /tmp
 	cd /tmp/oobt ; \

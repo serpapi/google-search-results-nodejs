@@ -1,6 +1,6 @@
 {
   "name": "google-search-results-nodejs",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Google Search Node JS API via SerpApi.com",
   "scripts": {
     "test": "mocha",
@@ -47,5 +47,17 @@
     "url": "https://github.com/serpapi/google-search-results-nodejs/issues"
   },
   "homepage": "https://github.com/serpapi/google-search-results-nodejs#readme",
-  "dependencies": {}
+  "dependencies": {},
+  "main": "lib/main.js",
+  "files": [
+    "lib/BaiduSearch.js",
+    "lib/BingSearch.js",
+    "lib/EbaySearch.js",
+    "lib/GoogleSearch.js",
+    "lib/SerpApiSearch.js",
+    "lib/WalmartSearch.js",
+    "lib/YahooSearch.js",
+    "lib/YandexSearch.js",
+    "lib/YoutubeSearch.js"
+  ]
 }
