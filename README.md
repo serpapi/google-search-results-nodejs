@@ -139,7 +139,7 @@ search.json(query_params, callback)
 search.html(query_params, callback)
 ```
 
-(the full documentation)[https://serpapi.com/search-api]
+[the full documentation](https://serpapi.com/search-api)
 
 see below for more hands on examples.
 
