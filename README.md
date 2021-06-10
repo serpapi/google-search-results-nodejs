@@ -24,6 +24,8 @@ SerpApi provides a [script builder](https://serpapi.com/demo) to get you started
 
 [The full documentation is available here.](https://serpapi.com/search-api)
 
+[Link to NodeJS Package](https://www.npmjs.com/package/google-search-results-nodejs)
+
 ## Requirement
 
 - ES6 basic understanding
