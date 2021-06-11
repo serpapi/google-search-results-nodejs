@@ -13,7 +13,7 @@ The following services are provided:
 
 SerpApi provides a [script builder](https://serpapi.com/demo) to get you started quickly.
 
-This Ruby Gem is meant to scrape and parse Google results using [SerpApi](https://serpapi.com).
+This npm package is meant to scrape and parse Google results using [SerpApi](https://serpapi.com).
 The following services are provided:
  * [Search API](https://serpapi.com/search-api)
  * [Location API](https://serpapi.com/locations-api)
