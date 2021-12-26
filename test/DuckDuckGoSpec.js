@@ -1,16 +1,15 @@
 const expect = require('expect');
 const serpapi = require('./../lib/main');
 
-describe('Yahoo Search', () => {
+describe('DuckDuckGo Search', () => {
   it("json", (done) => {
     let api_key = process.env.API_KEY
     if (api_key != null) {
-      let search = new serpapi.YahooSearch(api_key)
+      let search = new serpapi.DuckDuckGoSearch(api_key)
       search.json({
-        p: "Coffee"
+        q: "Coffee"
       }, (data) => {
         expect(data.search_metadata.status).toEqual("Success")
-        expect(data.organic_results.length).toBeGreaterThan(4)
         done()
       })
     } else {

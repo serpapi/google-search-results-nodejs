@@ -67,11 +67,18 @@ The class GoogleSearch
 Et voila..
 
 Alternatively, you can search:
- - Bing using BingSearch class
- - Baidu using BaiduSearch class
- - Yandex using YandexSearch class
- - Ebay using EbaySearch class
- - Yahoo using YahooSearch class
+- Baidu using BaiduSearch class
+- Bing using BingSearch class
+- DuckDuckGo using DuckDuckGoSearch class
+- Yahoo using YahooSearch class
+- Ebay using EbaySearch class
+- Yandex using YandexSearch class
+- HomeDepot using HomeDepotSearch class
+- GoogleScholar using GoogleScholarSearch class
+- Youtube using YoutubeSearch class
+- Walmart using WalmartSearch
+- Apple App Store using AppleAppStoreSearch class
+- Naver using NaverSearch class
 
 See the [playground to generate your code.](https://serpapi.com/playground)
 
@@ -257,6 +264,9 @@ make test
 ```
 
 ## Change log
+ * 2.1 
+   * add support for Naver, HomeDepot, AppleStoreApp, DuckDuckGo
+   * defature location if it is not supported by the search engine
  * 2.0.1 
   * fix classes loading.
  * 2.0
