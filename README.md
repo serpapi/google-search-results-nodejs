@@ -266,7 +266,7 @@ make test
 ## Change log
  * 2.1 
    * add support for Naver, HomeDepot, AppleStoreApp, DuckDuckGo
-   * defature location if it is not supported by the search engine
+   * defeature location if it is not supported by the search engine
  * 2.0.1 
   * fix classes loading.
  * 2.0
