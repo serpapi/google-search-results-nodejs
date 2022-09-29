@@ -1,52 +1,58 @@
-# Google Search Node.js
+# Google Search NodeJS
 
 [![npm version](https://badge.fury.io/js/google-search-results-nodejs.svg)](https://badge.fury.io/js/google-search-results-nodejs)
 ![test](https://github.com/serpapi/google-search-results-nodejs/workflows/test/badge.svg)
 
-This NodeJS module is designed to scrape and parse Google, Bing and Baidu results using [SerpApi](https://serpapi.com).
-This Ruby Gem is meant to scrape and parse Google results using [SerpApi](https://serpapi.com).
-The following services are provided:
- * [Search API](https://serpapi.com/search-api)
- * [Location API](https://serpapi.com/locations-api)
- * [Search Archive API](https://serpapi.com/search-archive-api)
- * [Account API](https://serpapi.com/account-api)
+`google-search-results-nodejs` is a MIT-licensed [NodeJS](https://nodejs.org/en/) package that meant to [scrape](https://en.wikipedia.org/wiki/Web_scraping) search results from Google, Bing, Baidu, Yahoo and [10+ more search engines](#supported-engines) with a [SerpApi](https://serpapi.com/) backend. SerpApi provides a [Playground](https://serpapi.com/playground) to get you started quickly by testing API interactively.
 
-SerpApi provides a [script builder](https://serpapi.com/demo) to get you started quickly.
+Find SerpApi documentation at: https://serpapi.com/search-api
 
-This npm package is meant to scrape and parse Google results using [SerpApi](https://serpapi.com).
-The following services are provided:
- * [Search API](https://serpapi.com/search-api)
- * [Location API](https://serpapi.com/locations-api)
- * [Search Archive API](https://serpapi.com/search-archive-api)
- * [Account API](https://serpapi.com/account-api)
+Find SerpApi package at: https://www.npmjs.com/package/google-search-results-nodejs
 
-SerpApi provides a [script builder](https://serpapi.com/demo) to get you started quickly.
 
-[The full documentation is available here.](https://serpapi.com/search-api)
+<details>
+<summary>Table of Contents</summary>
 
-[Link to NodeJS Package](https://www.npmjs.com/package/google-search-results-nodejs)
+- [Requirements](#requirements) 
+- [Installation](#installation) 
+- [Quick Start](#quick-start) 
+- [How SerpApi backend works](#how-serpapi-backend-works) 
+- [How to set SerpApi key](#how-to-set-serpapi-key) 
+- [Google Search API Capability](#google-search-api-capability) 
+- [Supported Engines](#supported-engines) 
+- [Example by Specification](#example-by-specification) 
+- [Extra APIs](#extra-apis)
+  - [Location API](#location-api)
+  - [Search Archive API](#search-archive-api)
+  - [Account API](#account-api)
+- [Promise and Callback](#promise-and-callback)
+- [Coding Style](#coding-style)
+- [Run Regression](#run-regression)
+- [Error Management](#error-management)
+- [Changelog](#change-log)
+</details>
 
-## Requirement
+## Requirements
 
 - ES6 basic understanding
-- NodeJS coding skills
-- Node 7+ and NPM installed
+- Node 7+ and [NPM installed](https://www.npmjs.com/package/npm)
 
 ## Installation
-
-NPM 7+
 
 ```bash
 $ npm install google-search-results-nodejs
 ```
 
-[Link to npm package](https://www.npmjs.com/package/google-search-results-nodejs)
-
 ## Quick start
+
+The following example runs a search for `"coffee"` using your secret API key which you can find at [SerpApi Dashboard](https://serpapi.com/manage-api-key) page. 
+
+[Open in the online IDE](https://replit.com/@serpapi/google-search-results-nodejs-quick-start?v=1) (Replit).
 
 ```javascript
 const SerpApi = require('google-search-results-nodejs')
-const search = new SerpApi.GoogleSearch("Your Private Key")
+const search = new SerpApi.GoogleSearch("<your-serpapi-api-key>")
+
 search.json({
  q: "Coffee", 
  location: "Austin, TX"
@@ -54,145 +60,174 @@ search.json({
   console.log(result)
 })
  ```
-This example runs a search about "coffee" using your secret api key.
 
-The SerpApi service (backend)
- - searches on Google using the search: q = "coffee"
- - parses the messy HTML responses
- - return a standardizes JSON response
-The class GoogleSearch
- - Format the request to SerpApi server
- - Execute GET http request
- - Parse JSON into Ruby Hash using JSON standard library provided by Ruby
-Et voila..
+### How SerpApi backend works
 
-Alternatively, you can search:
-- Baidu using BaiduSearch class
-- Bing using BingSearch class
-- DuckDuckGo using DuckDuckGoSearch class
-- Yahoo using YahooSearch class
-- Ebay using EbaySearch class
-- Yandex using YandexSearch class
-- HomeDepot using HomeDepotSearch class
-- GoogleScholar using GoogleScholarSearch class
-- Youtube using YoutubeSearch class
-- Walmart using WalmartSearch
-- Apple App Store using AppleAppStoreSearch class
-- Naver using NaverSearch class
+![image](https://user-images.githubusercontent.com/78694043/192951614-81ea265f-a8d4-49eb-9b51-10b09868b875.png)
 
-See the [playground to generate your code.](https://serpapi.com/playground)
+## How to set SerpApi key
 
-## Example
- * [How to set SERP API key](#how-to-set-serp-api-key)
- * [Search API capability](#search-api-capability)
- * [Example by specification](#example-by-specification)
- * [Location API](#location-api)
- * [Search Archive API](#search-archive-api)
- * [Account API](#account-api)
- * [Promise and callback](#Promise-and-callback)
- * [Coding style](#coding-style)
- 
-### How to set SERP API key
-The SerpApi api_key can be set globally using a singleton pattern.
+`api_key` can be set globally using a singleton pattern:
+
 ```javascript
 const SerpApi = require('google-search-results-nodejs')
-let search = new SerpApi.GoogleSearch("Your Private Key")
+const search = new SerpApi.GoogleSearch("<your-serpapi-api-key>")
 ```
 
-The SerpApi api_key can be provided for each request
+`api_key` can be [read from the environment variable](https://nodejs.dev/en/learn/how-to-read-environment-variables-from-nodejs/):
+
+```javascript
+const search = new SerpApi.GoogleSearch(process.env.API_KEY);
+```
+
+`api_key` can be provided for each request:
+
 ```javascript
 const SerpApi = require('google-search-results-nodejs')
-let search = new SerpApi.GoogleSearch()
+const search = new SerpApi.GoogleSearch()
+
 let result = search.json({
- api_key: "Your private key",
- q: "Coffee",            // search query
- location: "Austin, TX", // location 
+ api_key: "<your-serpapi-api-key>",
+ q: "Coffee",                       // search query
+ location: "Austin, TX",            // location of the search
 }, (data) => {
   console.log(data)
 })
 ```
 
-### Search API capability
-```javascript
-query_params = {
-  q: "query",
-  google_domain: "Google Domain", 
-  location: "Location Requested", 
-  device: device,
-  hl: "Google UI Language",
-  gl: "Google Country",
-  safe: "Safe Search Flag",
-  num: "Number of Results",
-  start: "Pagination Offset",
-  api_key: "Your SERP API Key",  // https://serpapi.com/dashboard
-  tbm: "nws|isch|shop",
-  tbs: "custom to be search criteria",
-  async: true|false,   // allow async query
-  output: "json|html", // output format
-}
+## Google Search API Capability
 
+```javascript
 const SerpApi = require('google-search-results-nodejs')
 const search = new SerpApi.GoogleSearch()
 
-// create a callback
-callback = (data) => {
- console.log(data)
+query_params = {
+    api_key: "asdewqe1231241asm",              // Your SerpApi API key.                                                                             
+    q: "coffee",                               // Search query.                                                                                     
+    google_domain: "google.com",               // Google domain to use.                                                                             
+    location: "Austin, Texas, United States",  // Location requested for the search.                                                                
+    uule: "w+CAIQICINVW5pdGVkIFN0YXRlcw",      // Google encoded location you want to use for the search.                                           
+    ludocid: "CID ID",                         // ID (CID) of the Google My Business listing you want to scrape.
+    lsig: "AB86z5W5r155sIcs3jqfYkm9Y8Fp",      // Force the knowledge graph map view to show up.
+    device: "desktop|mobile|tablet",           // Device used when making a search.                                                                 
+    hl: "en",                                  // Language of the search.                                                                           
+    gl: "gl",                                  // Country of the search.                                                                            
+    lr: "lang_en|lang_fr",                     // One or multiple languages to limit the search to.                                                 
+    safe: "active|off",                        // Level of filtering for adult content.                                                             
+    nfpr: "1|0",                               // Exclusion of results from an auto-corrected query that is spelled wrong.                          
+    num: "100",                                // Number of results per page.                                                                       
+    start: "20",                               // Pagination offset.                                                                                
+    ijn:"1",                                   // Page number for Google Images.                                                                    
+    tbm: "nws|isch|shop|lcl|vid",              // Type of search: news, images, shopping. local, video results.                                                         
+    tbs: "custom to be search criteria",       // Advanced search for patents, dates, news, videos, images, apps, or text contents                  
+    async: True|False,                         // Allow async request.
+    no_cache: True|False                       // Force SerpApi to fetch the Google results even if a cached version is already present             
 }
 
-// Show result as JSON
-search.json(query_params, callback)
-
-// Show result as HTML file
-search.html(query_params, callback)
+callback = (data) => {
+ console.log(data)                                // create a callback
+}
+                                                 
+search.json(query_params, callback)              // Show result as JSON
+search.html(query_params, callback)              // Show result as HTML file
 ```
 
-[the full documentation](https://serpapi.com/search-api)
+## Supported Engines
 
-see below for more hands on examples.
+| Engine                                                                       | Class name              |
+|------------------------------------------------------------------------------|-------------------------|
+| [Google Search Engine](https://serpapi.com/search-api)                       | `GoogleSearch()`        |
+| [Google Maps](https://serpapi.com/google-maps-api)                           | `GoogleSearch()`        |
+| [Google Jobs](https://serpapi.com/google-jobs-api)                           | `GoogleSearch()`        |
+| [Google Trends](https://serpapi.com/google-trends-api)                       | `GoogleSearch()`        |
+| [Google Autocomplete](https://serpapi.com/google-autocomplete-api)           | `GoogleScholarSearch()` |
+| [Google Related Questions](https://serpapi.com/google-related-questions-api) | `GoogleScholarSearch()` |
+| [Google Scholar](https://serpapi.com/google-scholar-api)                     | `GoogleScholarSearch()` |
+| [Google Play Store](https://serpapi.com/google-play-api)                     | `GoogleSearch()`        |
+| [Google Product](https://serpapi.com/google-product-api)                     | `GoogleSearch()`        |
+| [Google Immersive Product](https://serpapi.com/google-immersive-product-api) | `GoogleSearch()`        |
+| [Google Reverse Image](https://serpapi.com/google-reverse-image)             | `GoogleSearch()`        |
+| [Google Events](https://serpapi.com/google-events-api)                       | `GoogleSearch()`        |
+| [Google Local Services](https://serpapi.com/google-local-services-api)       | `GoogleSearch()`        |
+| [Bing](https://serpapi.com/bing-search-api)                                  | `BingSearch()`          |
+| [Baidu](https://serpapi.com/baidu-search-api)                                | `BaiduSearch()`         |
+| [DuckDuckGo](https://serpapi.com/duckduckgo-search-api)                      | `DuckDuckGoSearch()`    |
+| [Yahoo](https://serpapi.com/yahoo-search-api)                                | `YahooSearch()`         |
+| [Yandex](https://serpapi.com/yandex-search-api)                              | `YandexSearch()`        |
+| [eBay](https://serpapi.com/ebay-search-api)                                  | `EbaySearch()`          |
+| [Youtube](https://serpapi.com/youtube-search-api)                            | `YoutubeSearch()`       |
+| [Walmart](https://serpapi.com/walmart-search-api)                            | `WalmartSearch()`       |
+| [HomeDepot](https://serpapi.com/home-depot-search-api)                       | `HomeDepotSearch()`     |
+| [Apple App Store](https://serpapi.com/apple-app-store)                       | `AppleAppStoreSearch()` |
+| [Naver](https://serpapi.com/naver-search-api)                                | `NaverSearch()`         |
+| [Yelp](https://serpapi.com/yelp-search-api)                                  | `YelpSearch()`          |
 
-### Example by specification
 
-We love true open source, continuous integration and Test Drive Development (TDD). 
- We are using RSpec to test [our infrastructure around the clock](https://travis-ci.org/serpapi/google-search-results-ruby) to achieve the best QoS (Quality Of Service).
- 
-The directory test/ includes specification/examples.
+## Example by specification
 
-Set your api key.
+We love open source, continuous integration and [Test Driven Development](https://en.wikipedia.org/wiki/Test-driven_development) (TDD). We are using [RSpec](http://rspec.info/) to test [our infrastructure around the clock](https://travis-ci.org/serpapi/google-search-results-python) to achieve the best [Quality of Service](https://en.wikipedia.org/wiki/Quality_of_service) (QoS).
+
+The directory `test/` includes specification/examples.
+
+Set your API key:
+
 ```bash
-export API_KEY="your secret key"
+export API_KEY="<your-serpapi-api-key>"
 ```
 
-Run all tests
-```npm test```
+Run all tests: 
+
+```bash
+npm test
+```
+
+## Extra APIs
 
 ### Location API
+
 ```javascript
 const search = new SerpApi.GoogleSearch(api_key)
+
 search.location("Austin", 3, (data) => {
   console.log(data)
 })
 ```
 
-it prints the first 3 location matching Austin (Texas, Texas, Rochester)
+Prints the first three (3) locations matching Austin (Texas, Texas, Rochester)
+
 ```javascript
-[ { id: '585069bdee19ad271e9bc072',
-    google_id: 200635,
-    google_parent_id: 21176,
-    name: 'Austin, TX',
-    canonical_name: 'Austin,TX,Texas,United States',
-    country_code: 'US',
-    target_type: 'DMA Region',
-    reach: 5560000,
-    gps: [ -97.7430608, 30.267153 ],
-    keys: [ 'austin', 'tx', 'texas', 'united', 'states' ] },
-  ...]
+[
+   {
+      "id":"585069bdee19ad271e9bc072",
+      "google_id":200635,
+      "google_parent_id":21176,
+      "name":"Austin, TX",
+      "canonical_name":"Austin,TX,Texas,United States",
+      "country_code":"US",
+      "target_type":"DMA Region",
+      "reach":5560000,
+      "gps":[
+         -97.7430608,
+         30.267153
+      ],
+      "keys":[
+         "austin",
+         "tx",
+         "texas",
+         "united",
+         "states"
+      ]
+   }, ... other results
+]
 ```
 
 ### Search Archive API
 
-The first search result returns a search_id which can be provided to get the search result from the archive.
+The first search result returns a `search_id` which can be provided to get the search result from the archive. The following code will print the search from the archive.
+
 ```javascript
 var search = new SerpApi.GoogleSearch(api_key)
+
 search.json({q: "Coffee", location: "Portland" }, (search_result) => {
   // search in archive for the search just returned
   search.search_archive(search_result.search_metadata.id, (archived_search) => {
@@ -201,24 +236,24 @@ search.json({q: "Coffee", location: "Portland" }, (search_result) => {
 })
 ```
 
-it prints the search from the archive.
-
 ### Account API
+
+The following code snippet will print your account information.
+
 ```javascript
 const search = new SerpApi.GoogleSearch(api_key)
+
 search.account((data) => {
   console.log(data)
 })
 ```
-it prints your account information.
 
 ## Promise and callback
 
-This API was developped using basic callback to handle response.
-And exception are just throw away with interceptor.
+This API was developped using basic callback to handle response. Exception are just throw away with interceptor.
 
-if you want to take advantage of the promise to block the request. 
-here is how I will do.
+If you want to take advantage of the promise to block the request, here is how we'll do:
+
 ```javascript
 const util = require('util')
 
@@ -240,20 +275,61 @@ blockFn[util.promisify.custom](parameter).then((data) => {
   done()
 })
 ```
+<details>
+<summary>Practical code example using Google Images API</summary>
+
+  [Open in the online IDE](https://replit.com/@serpapi/google-search-results-nodejs-practical-code-example?v=1) (Replit)
+
+  ```javascript
+  const SerpApi = require("google-search-results-nodejs");
+  const search = new SerpApi.GoogleSearch(process.env.API_KEY); // your serpapi API key
+
+  const searchQuery = "coffee";
+
+  const params = {
+    q: searchQuery,   // what we want to search
+    engine: "google", // parsing engine
+    hl: "en",         // parameter defines the language to use for the Google search
+    gl: "us",         // parameter defines the country to use for the Google search
+    tbm: "isch",      // parameter defines the type of search you want to do (isch - Google Images)
+  };
+
+  const getJson = () => {
+    return new Promise((resolve) => {
+      search.json(params, resolve);
+    });
+  };
+
+  const getResults = async () => {
+    const imagesResults = [];
+
+    while (true) {
+      const json = await getJson();
+      if (json.images_results) {
+        imagesResults.push(...json.images_results);
+        params.ijn ? (params.ijn += 1) : (params.ijn = 1);
+      } else break;
+    }
+    return imagesResults;
+  };
+
+  getResults().then((result) => console.dir(result, { depth: null }));
+  ```
+</details>
 
 Reference:
- * test: test/ExampleSpec.js
+ * test: `test/ExampleSpec.js`
  * documentation: https://nodejs.org/docs/latest-v8.x/api/util.html#util_util_promisify_original
 
 ## Coding style
 
-This API is using callback to run in non-blocking code.
-Here we are trying to follow the spirit of NodeJS. 
-For reference you can read this article:
+This API is using callback to run in non-blocking code. Here we are trying to follow the spirit of NodeJS. 
+
+Reference:
  * https://nodejs.org/en/docs/guides/blocking-vs-non-blocking/
  * https://nodejs.org/en/docs/guides/dont-block-the-event-loop/
 
-For pratical example, you can see the test located under test/.
+For pratical example, you can see the test located under `test/` folder.
 
 ## Run regression
 
@@ -263,7 +339,16 @@ export API_KEY="your api key"
 make test
 ```
 
+## Error Management
+
+SerpApi keeps error management simple:
+1. backend service error or search fail.
+2. client error.
+
+If it's a backend error, a simple error message is returned as string in the server response. If it's a client error, then a `SerpApiClientException` is raised.
+
 ## Change log
+
  * 2.1 
    * add support for Naver, HomeDepot, AppleStoreApp, DuckDuckGo
    * defeature location if it is not supported by the search engine
@@ -273,17 +358,3 @@ make test
    * Refractor class name: SearchResult -> Search
  * 1.2
    * stable version to support all the basic search API.
-
-## Conclusion
-SerpApi supports Google Images, News, Shopping and more..
-To enable a type of search, the field tbm (to be matched) must be set to:
-
- * isch: Google Images API.
- * nws: Google News API.
- * shop: Google Shopping API.
- * any other Google service should work out of the box.
- * (no tbm parameter): regular Google search.
-
-The field `tbs` allows to customize the search even more.
-
-[The full documentation is available here.](https://serpapi.com/search-api)
