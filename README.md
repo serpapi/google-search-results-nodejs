@@ -1,5 +1,8 @@
 # Google Search Node.js
 
+| ⛔️ Deprecation warning ⛔️<br />Use the [`serpapi` npm package](https://www.npmjs.com/package/serpapi) instead. See the [migration document](https://github.com/serpapi/serpapi-javascript/blob/master/docs/migrating_from_google_search_results_nodejs.md) for more details. |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+
 [![npm version](https://badge.fury.io/js/google-search-results-nodejs.svg)](https://badge.fury.io/js/google-search-results-nodejs)
 ![test](https://github.com/serpapi/google-search-results-nodejs/workflows/test/badge.svg)
 
