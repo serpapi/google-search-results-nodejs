@@ -1,9 +1,9 @@
-# Google Search NodeJS
+# Google Search Node.js
 
 [![npm version](https://badge.fury.io/js/google-search-results-nodejs.svg)](https://badge.fury.io/js/google-search-results-nodejs)
 ![test](https://github.com/serpapi/google-search-results-nodejs/workflows/test/badge.svg)
 
-`google-search-results-nodejs` is a MIT-licensed [NodeJS](https://nodejs.org/en/) package that meant to [scrape](https://en.wikipedia.org/wiki/Web_scraping) search results from Google, Bing, Baidu, Yahoo and [10+ more search engines](#supported-engines) with a [SerpApi](https://serpapi.com/) backend. SerpApi provides a [Playground](https://serpapi.com/playground) to get you started quickly by testing API interactively.
+`google-search-results-nodejs` is a MIT-licensed [Node.js](https://nodejs.org/en/) package that meant to [scrape](https://en.wikipedia.org/wiki/Web_scraping) search results from Google, Bing, Baidu, Yahoo and [10+ more search engines](#supported-engines) with a [SerpApi](https://serpapi.com/) backend. SerpApi provides a [Playground](https://serpapi.com/playground) to get you started quickly by testing API interactively.
 
 Find SerpApi documentation at: https://serpapi.com/search-api
 
@@ -70,7 +70,8 @@ search.json({
 `api_key` can be set globally using a singleton pattern:
 
 ```javascript
-const SerpApi = require('google-search-results-nodejs')
+// https://serpapi.com/manage-api-key
+const SerpApi = require("google-search-results-nodejs")
 const search = new SerpApi.GoogleSearch("<your-serpapi-api-key>")
 ```
 
@@ -83,11 +84,11 @@ const search = new SerpApi.GoogleSearch(process.env.API_KEY);
 `api_key` can be provided for each request:
 
 ```javascript
-const SerpApi = require('google-search-results-nodejs')
+const SerpApi = require("google-search-results-nodejs")
 const search = new SerpApi.GoogleSearch()
 
 let result = search.json({
- api_key: "<your-serpapi-api-key>",
+ api_key: "<your-serpapi-api-key>", // https://serpapi.com/manage-api-key
  q: "Coffee",                       // search query
  location: "Austin, TX",            // location of the search
 }, (data) => {
@@ -98,11 +99,11 @@ let result = search.json({
 ## Google Search API Capability
 
 ```javascript
-const SerpApi = require('google-search-results-nodejs')
+const SerpApi = require("google-search-results-nodejs")
 const search = new SerpApi.GoogleSearch()
 
 query_params = {
-    api_key: "asdewqe1231241asm",              // Your SerpApi API key.                                                                             
+    api_key: "asdewqe1231241asm",              // Your SerpApi API key, https://serpapi.com/manage-api-key                                                                             
     q: "coffee",                               // Search query.                                                                                     
     google_domain: "google.com",               // Google domain to use.                                                                             
     location: "Austin, Texas, United States",  // Location requested for the search.                                                                
@@ -124,7 +125,7 @@ query_params = {
     no_cache: True|False                       // Force SerpApi to fetch the Google results even if a cached version is already present             
 }
 
-callback = (data) => {
+const callback = (data) => {
  console.log(data)                                // create a callback
 }
                                                  
@@ -141,6 +142,9 @@ search.html(query_params, callback)              // Show result as HTML file
 | [Google Jobs](https://serpapi.com/google-jobs-api)                           | `GoogleSearch()`        |
 | [Google Trends](https://serpapi.com/google-trends-api)                       | `GoogleSearch()`        |
 | [Google Autocomplete](https://serpapi.com/google-autocomplete-api)           | `GoogleScholarSearch()` |
+| [Google About This Result](https://serpapi.com/google-about-this-result)     | `GoogleSearch()`        |
+| [Google Lens](https://serpapi.com/google-lens-api)                           | `GoogleSearch()`        |
+| [Google Finance](https://serpapi.com/google-finance-api)                     | `GoogleSearch()`        |
 | [Google Related Questions](https://serpapi.com/google-related-questions-api) | `GoogleScholarSearch()` |
 | [Google Scholar](https://serpapi.com/google-scholar-api)                     | `GoogleScholarSearch()` |
 | [Google Play Store](https://serpapi.com/google-play-api)                     | `GoogleSearch()`        |
@@ -165,7 +169,7 @@ search.html(query_params, callback)              // Show result as HTML file
 
 ## Example by specification
 
-We love open source, continuous integration and [Test Driven Development](https://en.wikipedia.org/wiki/Test-driven_development) (TDD). We are using [RSpec](http://rspec.info/) to test [our infrastructure around the clock](https://travis-ci.org/serpapi/google-search-results-python) to achieve the best [Quality of Service](https://en.wikipedia.org/wiki/Quality_of_service) (QoS).
+We love open source, continuous integration and [Test Driven Development](https://en.wikipedia.org/wiki/Test-driven_development) (TDD). We are using [Mocha](https://mochajs.org/) to test [our infrastructure around the clock](https://travis-ci.org/serpapi/google-search-results-nodejs) to achieve the best [Quality of Service](https://en.wikipedia.org/wiki/Quality_of_service) (QoS).
 
 The directory `test/` includes specification/examples.
 
@@ -186,7 +190,7 @@ npm test
 ### Location API
 
 ```javascript
-const search = new SerpApi.GoogleSearch(api_key)
+const search = new SerpApi.GoogleSearch("<your-serpapi-api-key>")
 
 search.location("Austin", 3, (data) => {
   console.log(data)
@@ -226,7 +230,7 @@ Prints the first three (3) locations matching Austin (Texas, Texas, Rochester)
 The first search result returns a `search_id` which can be provided to get the search result from the archive. The following code will print the search from the archive.
 
 ```javascript
-var search = new SerpApi.GoogleSearch(api_key)
+var search = new SerpApi.GoogleSearch("<your-serpapi-api-key>")
 
 search.json({q: "Coffee", location: "Portland" }, (search_result) => {
   // search in archive for the search just returned
@@ -241,7 +245,7 @@ search.json({q: "Coffee", location: "Portland" }, (search_result) => {
 The following code snippet will print your account information.
 
 ```javascript
-const search = new SerpApi.GoogleSearch(api_key)
+const search = new SerpApi.GoogleSearch("<your-serpapi-api-key>")
 
 search.account((data) => {
   console.log(data)
@@ -258,7 +262,7 @@ If you want to take advantage of the promise to block the request, here is how w
 const util = require('util')
 
 function getJson(parameter, resolve, reject) {  
-  const search = new SerpApi.GoogleSearch(api_key)
+  const search = new SerpApi.GoogleSearch("<your-serpapi-api-key>")
   try {
     search.json(parameter, resolve)
   } catch (e) {
@@ -282,7 +286,7 @@ blockFn[util.promisify.custom](parameter).then((data) => {
 
   ```javascript
   const SerpApi = require("google-search-results-nodejs");
-  const search = new SerpApi.GoogleSearch(process.env.API_KEY); // your serpapi API key
+  const search = new SerpApi.GoogleSearch(process.env.API_KEY); // your serpapi API key, https://serpapi.com/manage-api-key
 
   const searchQuery = "coffee";
 
