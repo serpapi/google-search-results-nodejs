@@ -135,6 +135,9 @@ search.html(query_params, callback)              // Show result as HTML file
 
 ## Supported Engines
 
+<details>
+<summary>Google Search and 20+ other engines 👇</summary>
+
 | Engine                                                                       | Class name              |
 |------------------------------------------------------------------------------|-------------------------|
 | [Google Search Engine](https://serpapi.com/search-api)                       | `GoogleSearch()`        |
@@ -166,6 +169,7 @@ search.html(query_params, callback)              // Show result as HTML file
 | [Naver](https://serpapi.com/naver-search-api)                                | `NaverSearch()`         |
 | [Yelp](https://serpapi.com/yelp-search-api)                                  | `YelpSearch()`          |
 
+</details>
 
 ## Example by specification
 
