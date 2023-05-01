@@ -45,7 +45,7 @@
     "braces": ">=2.3.1",
     "expect": "^26.4.2",
     "minimist": ">=0.2.1",
-    "mocha": "^8.4.0"
+    "mocha": "^10.2.0"
   },
   "author": "Victor Benarbia victor@serpapi.com",
   "license": "ISC",
