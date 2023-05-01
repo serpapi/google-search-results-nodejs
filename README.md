@@ -1,7 +1,18 @@
-# Google Search Node.js
+<h1 align="center">Google Search in Node.js</h1>
 
-[![npm version](https://badge.fury.io/js/google-search-results-nodejs.svg)](https://badge.fury.io/js/google-search-results-nodejs)
-![test](https://github.com/serpapi/google-search-results-nodejs/workflows/test/badge.svg)
+<div align="center">
+   <img src="https://user-images.githubusercontent.com/78694043/234485499-4b165871-a843-4a32-baa8-5c059b561729.svg" width="700" alt="google-search-results-nodejs-logo">
+</div>
+
+<div align="center">
+
+  ![npm version](https://badge.fury.io/js/google-search-results-nodejs.svg)
+  ![npm downloads](https://img.shields.io/npm/dm/google-search-results-nodejs)
+  ![test](https://github.com/serpapi/google-search-results-nodejs/workflows/test/badge.svg)
+  ![npms.io (maintenance)](https://img.shields.io/npms-io/maintenance-score/google-search-results-nodejs)
+
+</div>
+
 
 `google-search-results-nodejs` is a MIT-licensed [Node.js](https://nodejs.org/en/) package that meant to [scrape](https://en.wikipedia.org/wiki/Web_scraping) search results from Google, Bing, Baidu, Yahoo and [10+ more search engines](#supported-engines) with a [SerpApi](https://serpapi.com/) backend. SerpApi provides a [Playground](https://serpapi.com/playground) to get you started quickly by testing API interactively.
 
