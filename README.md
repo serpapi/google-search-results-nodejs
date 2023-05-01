@@ -6,10 +6,10 @@
 
 <div align="center">
 
-  <a href="">![npm version](https://badge.fury.io/js/google-search-results-nodejs.svg)</a>
-  <a href="">![npm downloads](https://img.shields.io/npm/dm/google-search-results-nodejs)</a>
-  <a href="">![test](https://github.com/serpapi/google-search-results-nodejs/workflows/test/badge.svg)</a>
-  <a href="">![npms.io (maintenance)](https://img.shields.io/npms-io/maintenance-score/google-search-results-nodejs)</a>
+  ![npm version](https://badge.fury.io/js/google-search-results-nodejs.svg)
+  ![npm downloads](https://img.shields.io/npm/dm/google-search-results-nodejs)
+  ![test](https://github.com/serpapi/google-search-results-nodejs/workflows/test/badge.svg)
+  ![npms.io (maintenance)](https://img.shields.io/npms-io/maintenance-score/google-search-results-nodejs)
 
 </div>
 
