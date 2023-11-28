@@ -1,3 +1,8 @@
+# Deprecated!
+The google-search-results-nodejs npm package is being deprecated in favor of the [serpapi-javascript](https://github.com/serpapi/serpapi-javascript) npm package. It will still be available via npm, but will not receive feature updates.
+
+Read [the migration guide here](https://github.com/serpapi/serpapi-javascript/blob/master/docs/migrating_from_google_search_results_nodejs.md).
+
 # Google Search Node.js
 
 [![npm version](https://badge.fury.io/js/google-search-results-nodejs.svg)](https://badge.fury.io/js/google-search-results-nodejs)
