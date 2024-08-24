@@ -6,7 +6,7 @@ describe('Location API', () => {
     var search = new serpapi.GoogleSearch()
     search.location("Austin", 3, (data) => {
       //console.log(data)
-      expect(data[0].google_id).toEqual(200635)
+      expect(data[0].google_id).toEqual(1026201)
       expect(data.length).toEqual(3)
       done()
     })
