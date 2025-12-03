@@ -3,6 +3,10 @@
 [![npm version](https://badge.fury.io/js/google-search-results-nodejs.svg)](https://badge.fury.io/js/google-search-results-nodejs)
 ![test](https://github.com/serpapi/google-search-results-nodejs/workflows/test/badge.svg)
 
+> ## ⚠️ Deprecation Notice
+> This repository has been deprecated in favor of [serpapi/serpapi-javascript](https://github.com/serpapi/serpapi-javascript). 
+> You're strongly recommended to migrate to it. The required steps are outlined in the [migration guide](https://github.com/serpapi/serpapi-javascript/blob/master/docs/migrating_from_google_search_results_nodejs.md).
+
 `google-search-results-nodejs` is a MIT-licensed [Node.js](https://nodejs.org/en/) package that meant to [scrape](https://en.wikipedia.org/wiki/Web_scraping) search results from Google, Bing, Baidu, Yahoo and [10+ more search engines](#supported-engines) with a [SerpApi](https://serpapi.com/) backend. SerpApi provides a [Playground](https://serpapi.com/playground) to get you started quickly by testing API interactively.
 
 Find SerpApi documentation at: https://serpapi.com/search-api
